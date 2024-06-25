@@ -20,7 +20,7 @@
 
 ## Problem Specification
 ### 1. Integrity Restrictions
-Implement the following integrity constraints in the "Health" database, with the possibility of using procedural extensions (Triggers and Stored Procedures) if strictly necessary:
+Implement the following integrity constraints in the "saude" database, with the possibility of using procedural extensions (Triggers and Stored Procedures) if strictly necessary:
  - RI-1 Appointment times are at the exact hour or half-hour in the hours 8-13h and 14-19h
  - RI-2 A doctor cannot consult himself, although he can be a patient of other doctors in the system
  - RI-3 A doctor can only give consultations at the clinic where he works on the day of the weekcorresponding to the date of the appointment
@@ -40,10 +40,10 @@ Fill in all the database tables consistently with the following additional cover
  | Endpoint                      | Description |
  |-------------------------------|-------------|
  | /                             | List all clinics (name and address).  |
- | /c/'\<'clinica'\>'/                 | Lists all the specialties offered at <clinica>.   |
- | /c/'\<'clinica>/'\<'especialidade'\>'/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
- |/a/'\<'clinica'\>'/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
- | /a/'\<'clinica'\>'/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
+ | /c/\<clinica\>/                 | Lists all the specialties offered at <clinica>.   |
+ | /c/\<clinica>/\especialidade\>/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
+ |/a/\<clinica\>/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
+ | /a/\<clinica\>/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
  
 The solution must ensure security, preventing SQL injection attacks, and must guarantee the atomicity of operations on the database using transactions.
 The appointment and cancellation endpoints must return explicit messages either confirming that data has been inserted/removed or indicating why it was not possible to perform the operation.
@@ -58,7 +58,34 @@ where:
  - type: takes the values 'observation' or 'prescription' depending on how the following fields are filled in fields
  - key: corresponds to the parameter attribute of the observation table or the medicine attribute of the prescription table
  - value: corresponds to the value attribute of the observation table or the quantity attribute of the prescription
-  
+### 5. Data Analysis (SQL and OLAP)
+Using the view developed in the previous point, supplemented with other tables from the 'saude' database where necessary, present the most succinct SQL query for each of the following objectives analytics. You can use the ROLLUP, CUBE, GROUPING SETS statements or the UNION of GROUP BY clauses for the purposes you see fit.
+ 1. Determine which patient(s) have made the least progress in the treatment of their orthopaedic orthopaedic diseases in order to receive a free consultation. The indicator of lack of the maximum time interval between two observations of the same symptom (i.e. records of type 'observation' with the same key and a NULL value) in orthopaedic consultations.
+ 2. Determine which drugs are being used to treat chronic cardiac diseases. Any medication prescribed to the same patient (whoever that patient may be) by the patient (whoever they may be) at least once a month for at least twelve consecutive months, in consecutive cardiology consultations.
+ 3. Explore the total quantities prescribed of each drug in 2023, globally, and with drill down on the dimensions space (locality > clinic), time (month > day_of_months), and doctor (specialty > name [of doctor]), separately.
+ 4. Determine whether there is a bias in the measurement of any parameters between clinics, medical specialties or doctors. To do this, it is necessary to list the mean value and standard deviation of all the parameters of metric observations (i.e. with a non-NULL value) by drilling down on the dimension dimension (globally > specialty > [doctor's] name) and an additional drill-down (on top of the previous one) by clinic.
+### 6. Indexes
+Present the SQL statements for creating indexes to improve the times of each of the queries listed below on the 'saude' database. Justify your choice of table(s), attribute(s) index type(s), explaining which operations would be optimized and how. Consider that there are no indexes on the tables, other than those implied by declaring primary and foreign keys, and for the purposes of this exercise, assume that the size of the tables exceeds the available memory by several orders of magnitude.
+ 1.
+ ```sql
+SELECT nome
+FROM paciente
+JOIN consulta USING (ssn)
+JOIN observacao USING (id)
+WHERE parametro = ‘pressão diastólica’
+AND valor >= 9;
+```
+2.
+```sql
+SELECT especialidade, SUM(quantidade) AS qtd
+FROM medico
+JOIN consulta USING (nif)
+JOIN receita USING (codigo_ssn)
+WHERE data BETWEEN ‘2023-01-01’ AND ‘2023-12-31’
+GROUP BY especialidade
+SORT BY qtd;
+```
+
 ## Environment Setup
 ### 1. Requirements
   1. Docker 
