@@ -149,4 +149,4 @@ SORT BY qtd;
 <h2>Copyright</h2>
 This project is licensed under the terms of the MIT license and protected by IST Honor Code and Community Code of Conduct. 
 
-<img src="https://img.shields.io/badge/sql-00599C?style=for-the-badge&logo=sql&logoColor=white">
+<img src="https://img.shields.io/badge/PostgreSQL-00599C?style=for-the-badge&logo=postgresql&logoColor=white">
