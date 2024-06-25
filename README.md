@@ -60,7 +60,7 @@ After this setup, every time you need to run the containers just need to cd into
 
 ## Populating Database
 ### Creating Tables
-  1. With the docker containers running, in the jupyter notebook browser upload the file 'E2-report-04' in this repository (drag and drop)
+  1. With the docker containers running, in the jupyter notebook browser upload the file 'E2-report-04.ipynb' in this repository (drag and drop)
   2. Run the first 2 cells to create a connection with the database and create the tables
 ### Inserting records
   1. Run ```python3 populate_generator.py``` and it will create a file 'populate.sql' with all the problem requirements.
