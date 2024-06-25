@@ -40,15 +40,25 @@ Fill in all the database tables consistently with the following additional cover
  | Endpoint                      | Description |
  |-------------------------------|-------------|
  | /                             | List all clinics (name and address).  |
- | /c/<clinica>/                 | Lists all the specialties offered at <clinica>.   |
- | /c/<clinica>/<especialidade>/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
- |/a/<clinica>/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
- | /a/<clinica>/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
+ | /c/'\<'clinica'\>'/                 | Lists all the specialties offered at <clinica>.   |
+ | /c/'\<'clinica>/'\<'especialidade'\>'/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
+ |/a/'\<'clinica'\>'/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
+ | /a/'\<'clinica'\>'/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
  
 The solution must ensure security, preventing SQL injection attacks, and must guarantee the atomicity of operations on the database using transactions.
 The appointment and cancellation endpoints must return explicit messages either confirming that data has been inserted/removed or indicating why it was not possible to perform the operation.
 ### 4. Views
-
+Create a materialized view that details the most important information about patient appointments by appointments, combining information from various database tables. The view should have the following schema:
+patient_history(id, ssn, nif, name, date, year, month, day_of_month, locality, specialty, type, key, value)
+where:
+ - id, ssn, nif, name and date: correspond to the homonymous attributes of the query table
+ - year, month, day_of_month and day_of_week: are derived from the date attribute of the query table
+ - locality: is derived from the address attribute of the clinic table
+ - specialty: corresponds to the homonym attribute of the doctor table
+ - type: takes the values 'observation' or 'prescription' depending on how the following fields are filled in fields
+ - key: corresponds to the parameter attribute of the observation table or the medicine attribute of the prescription table
+ - value: corresponds to the value attribute of the observation table or the quantity attribute of the prescription
+  
 ## Environment Setup
 ### 1. Requirements
   1. Docker 
