@@ -73,18 +73,6 @@ After this setup, every time you need to run the containers just need to cd into
      \i ~/data/populate.sql 
      ```
 
-## API interaction
-### Get all medical specialties
-
-## Run
-Run the program using the following command:
-
-```bash
-./proj1
-```
-
-
-
 <h2>Credits</h2>
 
 - Author: <a href="https://github.com/iribeirocampos" target="_blank">Iuri Campos</a>
@@ -92,4 +80,4 @@ Run the program using the following command:
 <h2>Copyright</h2>
 This project is licensed under the terms of the MIT license and protected by IST Honor Code and Community Code of Conduct. 
 
-<img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white">
+<img src="https://img.shields.io/badge/sql-00599C?style=for-the-badge&logo=sql&logoColor=white">
