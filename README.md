@@ -98,7 +98,7 @@ SORT BY qtd;
   2. Cd into the created folder ```cd bdist-workspace/``` 
   3. Run a the command ```docker compose up```
   <br>
-  This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres.
+  This set of commands will create and run docker containers for Jupyter Notebook, PgAdmin and postgres.
 
 ### 3. Setting up PgAdmin
   1. With the containers running, open a browser window with the URL http://127.0.0.1:5050/login 
