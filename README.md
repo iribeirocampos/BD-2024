@@ -53,7 +53,7 @@ ENCODING = 'UTF8';```<br>
   4.7 Exit by running ```\q``` <br>
 ### 5. REST API setup
   5.1 In the folder of your project (where you cloned /bdist-workspace.git) run ```git clone https://github.com/bdist/app.git```<br>
-  5.2 Run create and run the app container ```docker compose -f docker-compose..app.yml up```<br>
+  5.2 To create and run the app container ```docker compose -f docker-compose..app.yml up```<br>
   5.3 Replace 'app.py' in the /app folder with the "app.py" in this repository<br>
   
 After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers. <br>
