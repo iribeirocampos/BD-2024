@@ -94,7 +94,7 @@ Make sure you have them installed in your machine
 ### 2. Building workspace
   1. In the folder were you will store the project run ```git clone https://github.com/bdist/bdist-workspace.git``` 
   2. Cd into the created folder ```cd bdist-workspace/``` 
-  3. Run a the command ```docker compose up```
+  3. Run a the command ```docker compose up```<br>
   This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres. 
 ### 3. Setting up PgAdmin
   1. With the containers running, open a browser window with the URL http://127.0.0.1:5050/login 
@@ -120,8 +120,8 @@ Make sure you have them installed in your machine
   1. In the folder of your project (where you cloned /bdist-workspace.git) run ```git clone https://github.com/bdist/app.git```
   2. To create and run the app container ```docker compose -f docker-compose..app.yml up```
   3. Replace 'app.py' in the /app folder with the "app.py" in this repository
-  
-After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers. <br>
+  <br>
+  After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers. <br>
 
 ## Populating Database
 ### Creating Tables
