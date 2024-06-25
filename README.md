@@ -91,13 +91,15 @@ SORT BY qtd;
   1. Docker 
   2. Git
   <br>
-  Make sure you have them installed in your machine 
+  Make sure you have them installed in your machine
+
 ### 2. Building workspace
   1. In the folder were you will store the project run ```git clone https://github.com/bdist/bdist-workspace.git``` 
   2. Cd into the created folder ```cd bdist-workspace/``` 
   3. Run a the command ```docker compose up```
   <br>
-  This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres. 
+  This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres.
+
 ### 3. Setting up PgAdmin
   1. With the containers running, open a browser window with the URL http://127.0.0.1:5050/login 
   2. Login with 'username: pgadmin@tecnico.pt' and 'password: pgadmin' 
