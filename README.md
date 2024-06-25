@@ -89,7 +89,7 @@ SORT BY qtd;
 ## Environment Setup
 ### 1. Requirements
   1. Docker 
-  2. Git 
+  2. Git <br>
 Make sure you have them installed in your machine 
 ### 2. Building workspace
   1. In the folder were you will store the project run ```git clone https://github.com/bdist/bdist-workspace.git``` 
