@@ -40,10 +40,10 @@ Fill in all the database tables consistently with the following additional cover
  | Endpoint                      | Description |
  |-------------------------------|-------------|
  | /                             | List all clinics (name and address).  |
- | /c/\<clinica\>/                 | Lists all the specialties offered at <clinica>.   |
- | /c/\<clinica>/\especialidade\>/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
- |/a/\<clinica\>/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
- | /a/\<clinica\>/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
+ | /c/\<clinica\>/                 | Lists all the specialties offered at \<clinica\>.   |
+ | /c/\<clinica>/\<especialidade\>/ | Lists all the doctors (name) of the \<especialidade\> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
+ |/a/\<clinica\>/registar/         | Register an appointment at \<clinica\> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
+ | /a/\<clinica\>/cancelar/        | Cancels an appointment that has not yet taken place at the \<clinica\> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
  
 The solution must ensure security, preventing SQL injection attacks, and must guarantee the atomicity of operations on the database using transactions.
 The appointment and cancellation endpoints must return explicit messages either confirming that data has been inserted/removed or indicating why it was not possible to perform the operation.
@@ -66,7 +66,7 @@ Using the view developed in the previous point, supplemented with other tables f
  4. Determine whether there is a bias in the measurement of any parameters between clinics, medical specialties or doctors. To do this, it is necessary to list the mean value and standard deviation of all the parameters of metric observations (i.e. with a non-NULL value) by drilling down on the dimension dimension (globally > specialty > [doctor's] name) and an additional drill-down (on top of the previous one) by clinic.
 ### 6. Indexes
 Present the SQL statements for creating indexes to improve the times of each of the queries listed below on the 'saude' database. Justify your choice of table(s), attribute(s) index type(s), explaining which operations would be optimized and how. Consider that there are no indexes on the tables, other than those implied by declaring primary and foreign keys, and for the purposes of this exercise, assume that the size of the tables exceeds the available memory by several orders of magnitude.
- 1.
+ 1. <br>
  ```sql
 SELECT nome
 FROM paciente
