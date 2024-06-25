@@ -59,12 +59,23 @@ Make sure you have them installed in your machine
 After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers. <br>
 
 ## Populating Database
-  ### Creating 
-To compile the program, use the following command:
+### Creating Tables
+  1. With the docker containers running, in the jupyter notebook browser upload the file 'E2-report-04' in this repository (drag and drop)
+  2. Run the first 2 cells to create a connection with the database and create the tables
+### Inserting records
+  1. Run ```python3 populate_generator.py``` and it will create a file 'populate.sql' with all the problem requirements.
+  2. With the docker containers running, in the jupyter notebook browser open a terminal tab
+  3. Connect to 'saude' database ```psql -h postgres -U saude``` and enter the password 'saude'
+  4. Upload the 'populate.sql' file in this repository or the newly built in step 1 and the "horarios.sql" file in this repository, to data folder in jupyter notebook (drag and drop).
+  5. Populate the database with the command
+     ```sql
+     \i ~/data/horarios.sql
+     \i ~/data/populate.sql 
+     ```
 
-```bash
-gcc -O3 -Wall -Wextra -Werror -Wno-unused-result -o proj1 *.c
-```
+## API interaction
+### Get all medical specialties
+
 ## Run
 Run the program using the following command:
 
@@ -72,16 +83,7 @@ Run the program using the following command:
 ./proj1
 ```
 
-## Testing
-To run all tests:
-1. cd into folder containing all tests
-```bash
-cd tests
-```
-2. Run command make:
-```bash
-make
-``` 
+
 
 <h2>Credits</h2>
 
