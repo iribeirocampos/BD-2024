@@ -19,7 +19,35 @@
 
 
 ## Problem Specification
-
+### 1. Integrity Restrictions
+Implement the following integrity constraints in the "Health" database, with the possibility of using procedural extensions (Triggers and Stored Procedures) if strictly necessary:
+ - RI-1 Appointment times are at the exact hour or half-hour in the hours 8-13h and 14-19h
+ - RI-2 A doctor cannot consult himself, although he can be a patient of other doctors in the system
+ - RI-3 A doctor can only give consultations at the clinic where he works on the day of the weekcorresponding to the date of the appointment
+   
+The ON DELETE CASCADE and ON UPDATE CASCADE mechanisms are not allowed.
+### 2. Basic Requirements
+Fill in all the database tables consistently with the following additional coverage requirements:
+ - 5 clinics, from at least 3 different locations in the Lisbon district.
+ - 5-6 nurses per clinic
+ - 20 doctors specializing in 'general practice' and 40 others distributed as desired among up to 5 other medical specialties (including at least 'orthopedics' and 'cardiology'). Each doctor must work in at least two clinics, and in each clinic every day of the week (including weekends), there must be at least 8 doctors
+ - Around 5,000 patients
+ - A minimum number of consultations in 2023 and 2024 such that each patient has at least one consultation, and on each day there are at least 20 consultations per clinic, and at least 2 consultations per doctor
+ - ~80% of consultations have an associated prescription, and prescriptions have 1 to 6 drugs in quantities between 1 and 3
+ - All consultations have 1 to 5 symptom observations (with parameter but no value) and 0 to 3 metric observations (with parameter and value). There should be ~50 different parameters for the symptoms (without value) and ~20 different parameters for the metric observations (with value) and the and the two sets must be disjoint.
+### 3. Build a REST API for your database
+ Create a prototype of a RESTful web service for managing queries by programmatic access to the 'Health' database via an database via an API that returns answers in JSON, implementing the following REST endpoints:
+ | Endpoint                      | Description |
+ |-------------------------------|-------------|
+ | /                             | List all clinics (name and address).  |
+ | /c/<clinica>/                 | Lists all the specialties offered at <clinica>.   |
+ | /c/<clinica>/<especialidade>/ | Lists all the doctors (name) of the <specialty> who work at the <clinic> and the first three opening hours available for consultation for each of them (date and time). |
+ |/a/<clinica>/registar/         | Register an appointment at <clinic> in the database (populating the respective table).  It receives as arguments a patient, a doctor, and a date and time(after the time of the appointment). |
+ | /a/<clinica>/cancelar/        | Cancels an appointment that has not yet taken place at the <clinic> (its time is after the moment of cancellation), removing the entry from the respective table in the database. It receives as arguments a patient, a doctor, and a date and time.|
+ 
+The solution must ensure security, preventing SQL injection attacks, and must guarantee the atomicity of operations on the database using transactions.
+The appointment and cancellation endpoints must return explicit messages either confirming that data has been inserted/removed or indicating why it was not possible to perform the operation.
+### 4. Views
 
 ## Environment Setup
 ### 1. Requirements
