@@ -23,40 +23,40 @@
 
 ## Environment Setup
 ### 1. Requirements
-  1.1 Docker
-  1.2 Git
-Make sure you have them installed in your machine
+  1.1 Docker <br>
+  1.2 Git <br>
+Make sure you have them installed in your machine <br>
 ### 2. Building workspace
-  2.1 In the folder were you will store the project run ```git clone https://github.com/bdist/bdist-workspace.git```
-  2.2 Cd into the created folder ```cd bdist-workspace/```
-  2.3 Run a the command ```docker compose up```
-  This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres.
+  2.1 In the folder were you will store the project run ```git clone https://github.com/bdist/bdist-workspace.git``` <br>
+  2.2 Cd into the created folder ```cd bdist-workspace/``` <br>
+  2.3 Run a the command ```docker compose up```<br>
+  This set of commands will create end run docker containers for Jupyter Notebook, PgAdmin and postgres. <br>
 ### 3. Setting up PgAdmin
-  3.1 With the containers running, open a browser window with the URL http://127.0.0.1:5050/login
-  3.2 Login with 'username: pgadmin@tecnico.pt' and 'password: pgadmin'
-  3.3 Click on ```Add new Server```
-  3.4 Set Name on general tab has 'postgres'
-  3.5 Set Host Name on connection tab has 'postegres' 
-  3.6 Set user has 'postgres' and password has 'postgres'
+  3.1 With the containers running, open a browser window with the URL http://127.0.0.1:5050/login <br>
+  3.2 Login with 'username: pgadmin@tecnico.pt' and 'password: pgadmin' <br>
+  3.3 Click on ```Add new Server``` <br>
+  3.4 Set Name on general tab has 'postgres' <br>
+  3.5 Set Host Name on connection tab has 'postegres' <br> 
+  3.6 Set user has 'postgres' and password has 'postgres' <br>
 ### 4. Creating Database
-  4.1 Open Jupyter notebook, in the terminal output from docker containers you will find the url something like 'http://127.0.0.1:9999/lab?token=<TOKEN>', open it in your browser
-  4.2 Inside the jupyter notebook open a 'Terminal' tab
-  4.3 Connect to psql with ```psql -h postgres -U postgres``` and enter the password created in step 3.6
-  4.4 Create an user 'saude' with ```CREATE USER saude WITH PASSWORD 'saude';```
-  4.5 Create the database:
+  4.1 Open Jupyter notebook, in the terminal output from docker containers you will find the url something like 'http://127.0.0.1:9999/lab?token=<TOKEN>', open it in your browser <br>
+  4.2 Inside the jupyter notebook open a 'Terminal' tab <br>
+  4.3 Connect to psql with ```psql -h postgres -U postgres``` and enter the password created in step 3.6 <br>
+  4.4 Create an user 'saude' with ```CREATE USER saude WITH PASSWORD 'saude';``` <br>
+  4.5 Create the database:<br>
       ```bash
 CREATE DATABASE bank
 WITH
 OWNER = bank
-ENCODING = 'UTF8';```
-  4.6 Grant all privileges to 'saude' user ```GRANT ALL ON DATABASE saude TO saude;```
-  4.7 Exit by running ```\q```
+ENCODING = 'UTF8';```<br>
+  4.6 Grant all privileges to 'saude' user ```GRANT ALL ON DATABASE saude TO saude;``` <br>
+  4.7 Exit by running ```\q``` <br>
 ### 5. REST API setup
-  5.1 In the folder of your project (where you cloned /bdist-workspace.git) run ```git clone https://github.com/bdist/app.git```
-  5.2 Run create and run the app container ```docker compose -f docker-compose..app.yml up```
-  5.3 Replace 'app.py' in the /app folder with the "app.py" in this repository
+  5.1 In the folder of your project (where you cloned /bdist-workspace.git) run ```git clone https://github.com/bdist/app.git```<br>
+  5.2 Run create and run the app container ```docker compose -f docker-compose..app.yml up```<br>
+  5.3 Replace 'app.py' in the /app folder with the "app.py" in this repository<br>
   
-After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers.
+After this setup, every time you need to run the containers just need to cd into 'bdist-workspace' and run ```docker compose up``` it will run all containers. <br>
 
 ## Populating Database
   ### Creating 
