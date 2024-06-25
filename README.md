@@ -43,12 +43,12 @@ Make sure you have them installed in your machine
   2. Inside the jupyter notebook open a 'Terminal' tab 
   3. Connect to psql with ```psql -h postgres -U postgres``` and enter the password created in step 3.6 
   4. Create an user 'saude' with ```CREATE USER saude WITH PASSWORD 'saude';``` 
-  5. Create the database:
-    ```sql
-    CREATE DATABASE bank
-    WITH
-    OWNER = bank
-    ```
+  5. Create the database:  
+      ```
+      CREATE DATABASE bank
+      WITH
+      OWNER = bank
+      ```
   6. Grant all privileges to 'saude' user ```GRANT ALL ON DATABASE saude TO saude;``` 
   7. Exit by running ```\q``` 
 ### 5. REST API setup
