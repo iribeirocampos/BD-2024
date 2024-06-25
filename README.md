@@ -45,9 +45,9 @@ Make sure you have them installed in your machine
   4. Create an user 'saude' with ```CREATE USER saude WITH PASSWORD 'saude';``` 
   5. Create the database:  
       ```sql
-      CREATE DATABASE bank
+      CREATE DATABASE saude
       WITH
-      OWNER = bank;
+      OWNER = saude;
       ```
   6. Grant all privileges to 'saude' user ```GRANT ALL ON DATABASE saude TO saude;``` 
   7. Exit by running ```\q``` 
