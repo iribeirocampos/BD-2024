@@ -147,6 +147,7 @@ SORT BY qtd;
 - Authors:
   - <a href="https://github.com/iribeirocampos" target="_blank">Iuri Campos</a>
   - <a href="https://github.com/w-userc" target="_blank">Liedson Cunha</a>
+  - <a href="https://github.com/PedPizarro" target="_blank">Pedro Pizarro</a>
   
 <h2>Copyright</h2>
 This project is licensed under the terms of the MIT license and protected by IST Honor Code and Community Code of Conduct. 
